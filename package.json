@@ -1,0 +1,24 @@
+{
+  "name": "practice-mongoose-w-express",
+  "version": "1.0.0",
+  "description": "practice integrating app-server with MongoDB-server using mongoose",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/BhaveshUV/practice-mongoose-w-express.git"
+  },
+  "author": "Bhavesh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BhaveshUV/practice-mongoose-w-express/issues"
+  },
+  "homepage": "https://github.com/BhaveshUV/practice-mongoose-w-express#readme",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "mongoose": "^8.16.0"
+  }
+}

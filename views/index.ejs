@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>chatApp</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <h1>ALL CHATS</h1>
+    <div id="chats">
+        <% for(let chat of chats) { %>
+            <div class="chat">
+                <div class="from-to">
+                    <div class="img"></div>
+                    <span>
+                        <%=chat.from%> ⇾&nbsp;
+                    </span>
+                    <div class="img"></div>
+                    <span>
+                        <%=chat.to%>
+                    </span>
+                </div>
+                <div class="msg">
+                    <i><%=chat.msg%></i>
+                </div>
+            </div>
+            <% } %>
+    </div>
+    <div id="resource-attribution">
+        <a href="https://www.pexels.com/photo/red-leaf-trees-near-the-road-33109/">Background image by Pixabay</a>
+        <a href="https://www.flaticon.com/ru/free-icons/-" title="avatar icons">Avatar icons by Fantasyou - Flaticon</a>
+    </div>
+</body>
+
+</html>

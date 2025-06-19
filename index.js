@@ -12,26 +12,22 @@ main()
     .then(() => console.log("Connected to MongoDB server using mongoose"))
     .catch(err => console.log(err));
 
-//-------- Create a chat instance and save to chatApp database --------//
-let chat1 = new Chat({
-    from: "agentA",
-    to: "agentB",
-    msg: "Work-in progress",
-    created_at: new Date()
-});
-chat1.save()
-    .then(res => console.log(res))
-    .catch(e => console.log(e));
-
 //---------------- Set up Express server and API routes ----------------//
 const app = express();
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "/views"));
 
+app.use(express.static(path.join(__dirname, "/public")));
+
 app.get("/", (req, res) => {
     res.send("This root GET API is working");
-})
+});
+
+app.get("/chats", async (req, res) => {
+    let chats = await Chat.find();
+    res.render("index.ejs", {chats});
+});
 
 app.listen(8080, () => {
     console.log("App server is listening on port 8080...");

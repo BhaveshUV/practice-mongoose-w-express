@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
 const Chat = require("./models/chat");
+const methodOverride = require("method-override");
 
 //---------------- Set up MongoDB database connection ----------------//
 async function main() {
@@ -22,6 +23,9 @@ app.use(express.static(path.join(__dirname, "/public")));
 // Middleware
 app.use(express.urlencoded({ extended: true }));
 
+// Method-override
+app.use(methodOverride("_method"));
+
 // GET—check root get route
 app.get("/", (req, res) => {
     res.send("This root GET API is working");
@@ -36,11 +40,20 @@ app.get("/chats", async (req, res) => {
 // GET — get send new chat form
 app.get("/chats/new", (req, res) => {
     res.render("newChatForm.ejs");
-})
+});
+
+// GET — get send new chat form
+app.get("/chats/:id", (req, res) => {
+    let { id } = req.params;
+    Chat.findById({ _id: id })
+        .then((result) => {
+            res.render("editChatForm.ejs", { result });
+        })
+        .catch(e => res.send(e));
+});
 
 // POST — create/insert new received chat
 app.post("/chats", (req, res) => {
-    console.log("request received");
     let newChat = new Chat({
         ...req.body,
         created_at: new Date()
@@ -51,6 +64,17 @@ app.post("/chats", (req, res) => {
             res.redirect("/chats");
         })
         .catch(e => res.send(e));
+});
+
+// PUT — put the updated message to the db
+app.put("/chats/:id", (req, res) => {
+    let { id } = req.params;
+    Chat.findByIdAndUpdate({_id: id}, req.body)
+    .then(result => {
+        console.log("Updated chat: ", req.body);
+        res.redirect("/chats");
+    })
+    .catch(e => res.send(e));
 });
 
 app.listen(8080, () => {

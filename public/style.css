@@ -80,6 +80,7 @@ h1 {
 }
 
 .msg {
+    position: relative;
     background-color: white;
     width: 100%;
     min-height: 3rem;
@@ -89,6 +90,12 @@ h1 {
     align-items: center;
     box-shadow: 0px -4px 4px black, 0px 4px 4px black;
     padding: 1rem;
+}
+
+.msg a {
+    position: absolute;
+    bottom: 0;
+    right: 0.5rem;
 }
 
 .date-time {

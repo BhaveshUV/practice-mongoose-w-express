@@ -28,11 +28,16 @@
                 </div>
                 <div class="msg">
                     <i><%=chat.msg%></i>
-                    <a href="/chats/<%=chat.id%>">📝</a>
+                    <div class="date-time">
+                        <span><%=chat.updated_at ? chat.updated_at.toString().split(" ").splice(1, 3).join(" ") : chat.created_at.toString().split(" ").splice(1, 3).join(" ")%></span>
+                        <span><%=chat.updated_at ? "(updated) " + chat.updated_at.toString().split(" ")[0] : chat.created_at.toString().split(" ")[0]%> <%=chat.updated_at ? chat.updated_at.toString().split(" ")[4] : chat.created_at.toString().split(" ")[4]%></span>
+                    </div>
                 </div>
-                <div class="date-time">
-                    <span><%=chat.updated_at ? chat.updated_at.toString().split(" ").splice(1, 3).join(" ") : chat.created_at.toString().split(" ").splice(1, 3).join(" ")%></span>
-                    <span><%=chat.updated_at ? "(updated) " + chat.updated_at.toString().split(" ")[0] : chat.created_at.toString().split(" ")[0]%> <%=chat.updated_at ? chat.updated_at.toString().split(" ")[4] : chat.created_at.toString().split(" ")[4]%></span>
+                <div class="chat-options">
+                    <form id="delete-form" method="POST" action="/chats/<%=chat.id%>/?_method=DELETE">
+                        <button class="delete">Delete chat🗑️</button>
+                    </form>
+                    <a href="/chats/<%=chat.id%>"><button>Edit chat📝</button></a>
                 </div>
             </div>
             <% } %>

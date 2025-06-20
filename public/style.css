@@ -6,7 +6,8 @@ html, body {
 body {
     cursor: default;
     margin: 0;
-    padding: 0.1rem 0;
+    padding: 1.34rem 0 4.7rem 0;
+    box-sizing: border-box;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-image: url("https://images.pexels.com/photos/33109/fall-autumn-red-season.jpg");
     backdrop-filter: blur(3px);
@@ -16,6 +17,7 @@ body {
 }
 
 h1 {
+    margin-top: 0;
     text-align: center;
     background-color: rgb(255, 255, 255);
 }
@@ -44,7 +46,7 @@ h1 {
 
 /* Chats */
 #chats {
-    padding-top: 0.25rem;
+    padding: 0.34rem 0 1.34rem 0;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -89,21 +91,25 @@ h1 {
     justify-content: center;
     align-items: center;
     box-shadow: 0px -4px 4px black, 0px 4px 4px black;
-    padding: 1rem;
-}
-
-.msg a {
-    position: absolute;
-    bottom: 0;
-    right: 0.5rem;
+    padding: 1rem 1rem 2rem 1rem;
 }
 
 .date-time {
+    box-sizing: border-box;
     width: 100%;
-    padding: 0.3rem;
+    padding: 0 0.5rem;
     font-size: smaller;
     display: flex;
     justify-content: space-between;
+    position: absolute;
+    bottom: 0;
+    background-color: wheat;
+}
+
+.chat-options {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
 }
 
 /* Resource attribution */
@@ -125,7 +131,7 @@ a {
 }
 
 /* Send new chat form */
-form {
+form#new-msg {
     width: fit-content;
     padding: 2rem;
     border-radius: 1rem;
@@ -157,7 +163,7 @@ form {
     text-align: center;
 }
 
-#new-msg button, .delete {
+#new-msg button {
     cursor: pointer;
     width: fit-content;
     padding: 0.25rem 0.5rem;
@@ -171,11 +177,6 @@ form {
 
 #new-msg .send {
     background-color: rgb(18, 156, 18);
-    color: white;
-}
-
-#new-msg .delete, .delete {
-    background-color: rgb(192, 36, 36);
     color: white;
 }
 

@@ -69,12 +69,26 @@ app.post("/chats", (req, res) => {
 // PUT — put the updated message to the db
 app.put("/chats/:id", (req, res) => {
     let { id } = req.params;
-    Chat.findByIdAndUpdate({_id: id}, {...req.body, updated_at: new Date()}, {runValidators: true, returnDocument: "after"})
-    .then(result => {
-        console.log("Updated chat: ", result);
+    Chat.findByIdAndUpdate({ _id: id }, { ...req.body, updated_at: new Date() }, { runValidators: true, returnDocument: "after" })
+        .then(result => {
+            console.log("Updated chat: ", result);
+            res.redirect("/chats");
+        })
+        .catch(e => res.send(e));
+});
+
+// DELETE — delete a chat from the db
+app.delete("/chats/:id", async (req, res) => {
+    let { id } = req.params;
+    try{
+        let deletedChat = await Chat.findByIdAndDelete(id);
+        if(!deletedChat) res.status(404).send("Chat not found");
+        console.log("This is the deleted chat: ", deletedChat);
         res.redirect("/chats");
-    })
-    .catch(e => res.send(e));
+    } catch(err) {
+        console.log(err);
+        res.status(500).json({message: "Error deleting the chat", error: err.message});
+    }
 });
 
 app.listen(8080, () => {

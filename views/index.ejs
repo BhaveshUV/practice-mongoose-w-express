@@ -31,8 +31,8 @@
                     <a href="/chats/<%=chat.id%>">📝</a>
                 </div>
                 <div class="date-time">
-                    <span><%=chat.created_at.toString().split(" ").splice(1, 3).join(" ")%></span>
-                    <span><%=chat.created_at.toString().split(" ")[0]%> <%=chat.created_at.toString().split(" ")[4]%></span>
+                    <span><%=chat.updated_at ? chat.updated_at.toString().split(" ").splice(1, 3).join(" ") : chat.created_at.toString().split(" ").splice(1, 3).join(" ")%></span>
+                    <span><%=chat.updated_at ? "(updated) " + chat.updated_at.toString().split(" ")[0] : chat.created_at.toString().split(" ")[0]%> <%=chat.updated_at ? chat.updated_at.toString().split(" ")[4] : chat.created_at.toString().split(" ")[4]%></span>
                 </div>
             </div>
             <% } %>

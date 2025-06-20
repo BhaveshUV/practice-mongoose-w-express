@@ -69,9 +69,9 @@ app.post("/chats", (req, res) => {
 // PUT — put the updated message to the db
 app.put("/chats/:id", (req, res) => {
     let { id } = req.params;
-    Chat.findByIdAndUpdate({_id: id}, req.body)
+    Chat.findByIdAndUpdate({_id: id}, {...req.body, updated_at: new Date()}, {runValidators: true, returnDocument: "after"})
     .then(result => {
-        console.log("Updated chat: ", req.body);
+        console.log("Updated chat: ", result);
         res.redirect("/chats");
     })
     .catch(e => res.send(e));
